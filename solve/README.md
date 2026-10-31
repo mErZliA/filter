@@ -74,3 +74,20 @@ wearing a transformer costume.
 Anything the detector cannot name is "benign": syscalls built at runtime,
 `execve`, ORW, whatever. The correct answer to "surely a neural network cannot
 be fooled" is "it is not a neural network".
+
+## Result against the live instance
+
+```
+[*] Please, enter token:
+> [+] Connecting...
+=== filter: neural shellcode firewall ===
+[*] guard verdict: score = -10.000
+[+] looks harmless to me. Executing...
+uid=1000(ctf) gid=1000(ctf) groups=1000(ctf)
+$ cat /flag.txt
+ctfcup{...}
+```
+
+`relay.py` is the same exploit packaged to run from a machine that can reach
+`instances.ctfcup.online:1337` (it speaks the token prompt, then the length
+prefixed payload protocol, then drives the shell).
